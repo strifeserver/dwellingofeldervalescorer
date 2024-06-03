@@ -1,4 +1,5 @@
 .App {
+  height: 100vh;
   /* text-align: center; */
 }
 body {
@@ -42,17 +43,12 @@ body {
 }
 
 .background-image {
+  position: relative; /* Ensures the pseudo-element is positioned relative to this element */
   background-image: url('/public/images/background.jpg');
   background-size: cover;
-  /* Adjusts the size to cover the entire element */
   background-position: center;
-  /* Centers the image */
-  background-repeat: no-repeat;
-  /* Ensures the image does not repeat */
-  height: 100vh;
-  /* Sets the height of the element to 100% of the viewport height */
+  background-attachment: fixed;
   width: 100%;
-  /* Sets the width of the element to 100% */
 }
 
 .background-image::before {
@@ -63,10 +59,9 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  /* Adjust the opacity as needed */
   z-index: 1;
-  /* Ensures the overlay is on top of the background image */
 }
+
 
 .background-image>* {
   position: relative;
@@ -98,9 +93,7 @@ body {
   /* Sets the height of the element to 100% of the viewport height */
   /* Sets the width of the element to 100% */
 }
-#starter_div{
 
-}
 
 .Air-starter{
   background-image: url('/public/images/air.png');

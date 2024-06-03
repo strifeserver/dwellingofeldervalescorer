@@ -192,7 +192,7 @@ function EldervaleScoring() {
 
       <div className="p-4">
         <p>
-          <span className=" text-sm font-medium leading-6">
+          <span className=" text-sm font-medium leading-10">
             Victory Points:
           </span>{" "}
           <span id="">{TotalScore}</span>
@@ -413,7 +413,7 @@ function EldervaleScoring() {
               </label>
             </div>
             <div className="col-start-3 col-span-4  ">
-              <label className="block text-sm font-medium leading-6 guide">
+              <label className="block text-sm font-medium leading-6 ">
                 Starter Card Score: {StarterElementalScore}
               </label>
             </div>
@@ -421,7 +421,7 @@ function EldervaleScoring() {
             <div className="grid grid-cols-12 gap-4 mx-auto col-span-12 ">
               <div
                 id="starter_div"
-                className="col-span-4  flex justify-center items-center  guide"
+                className="col-span-4  flex justify-center items-center  "
               >
                 <select
                   id="starter_element"
@@ -440,7 +440,7 @@ function EldervaleScoring() {
                   <option>Chaos</option>
                 </select>
               </div>
-              <div className=" col-span-4  flex justify-center items-center  prophecy-div guide">
+              <div className=" col-span-4  flex justify-center items-center  prophecy-div ">
                 <InputForm
                   type="text"
                   name="vault"
@@ -449,7 +449,7 @@ function EldervaleScoring() {
                   label=""
                 />
               </div>
-              <div className="col-span-4  flex justify-center items-center vault-div guide">
+              <div className="col-span-4  flex justify-center items-center vault-div ">
                 <InputForm
                   type="text"
                   name="vault"
