@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  height: 100%;
   /* text-align: center; */
 }
 body {
@@ -93,6 +93,18 @@ body {
   /* Sets the height of the element to 100% of the viewport height */
   /* Sets the width of the element to 100% */
 }
+.magic-div{
+  background-image: url('/public/images/magic.png');
+  background-size: contain;
+  /* Adjusts the size to cover the entire element */
+  background-position: center;
+  /* Centers the image */
+  background-repeat: no-repeat;
+  /* Ensures the image does not repeat */
+  height: 16vh;
+  /* Sets the height of the element to 100% of the viewport height */
+  /* Sets the width of the element to 100% */
+}
 
 
 .Air-starter{
@@ -150,4 +162,9 @@ body {
   background-position: right;
   background-repeat: no-repeat;
   height: 16vh;
+}
+
+
+.inputfield{
+  width: 100%;
 }
