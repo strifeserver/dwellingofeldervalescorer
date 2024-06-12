@@ -110,61 +110,142 @@ body {
 .Air-starter{
   background-image: url('/public/images/air.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Earth-starter{
   background-image: url('/public/images/earth.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Fire-starter{
   background-image: url('/public/images/fire.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Water-starter{
   background-image: url('/public/images/water.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Light-starter{
   background-image: url('/public/images/light.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Darkness-starter{
   background-image: url('/public/images/dark.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Order-starter{
   background-image: url('/public/images/order.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 .Chaos-starter{
   background-image: url('/public/images/chaos.png');
   background-size: contain;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   height: 16vh;
 }
 
 
+
+.Air-Adventure{
+  background-image: url('/public/images/air_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Earth-Adventure{
+  background-image: url('/public/images/earth_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Fire-Adventure{
+  background-image: url('/public/images/fire_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Water-Adventure{
+  background-image: url('/public/images/water_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Light-Adventure{
+  background-image: url('/public/images/light_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Darkness-Adventure{
+  background-image: url('/public/images/dark_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Order-Adventure{
+  background-image: url('/public/images/order_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+.Chaos-Adventure{
+  background-image: url('/public/images/chaos_adventure.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16vh;
+  border-top: 6px solid black;    /* Add border to the top */
+  border-bottom: 16px solid black; /* Add border to the bottom */
+}
+
+
+
 .inputfield{
   width: 100%;
+}
+
+
+.bgTransparent{
+  background-color: rgb(17 24 39 / 29%) !important;
 }
