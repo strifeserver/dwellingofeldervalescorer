@@ -7,6 +7,7 @@ function EldervaleScoring() {
   const [TotalScore, setTotalScore] = useState(0);
   const [ElementalScore, setElementalScore] = useState(0);
   const [UnspentOrbs, setUnspentOrbs] = useState(0);
+  const [VictoryPoints, setVictoryPoints] = useState(0);
   const [StarterElementalScore, setStarterElementalScore] = useState(0);
   const [ProphecyScore, setProphecyScore] = useState(0);
   const [VaultScore, setVaultScore] = useState(0);
@@ -182,6 +183,19 @@ function EldervaleScoring() {
                 onChange={setUnspentOrbs} // Pass the handler as a prop
               ></InputForm>
             </div>
+            <div className="col-span-6 md:col-span-3 ">
+              <InputForm
+                type="text"
+                name="victory_points"
+                id="victory_points"
+                classes="inputfield"
+                placeholder="0"
+                value=""
+                label="Victory Points"
+                onChange={setVictoryPoints} // Pass the handler as a prop
+
+              ></InputForm>
+            </div>
 
             <div className="col-span-12">
               <label className="block text-sm font-medium leading-6">
@@ -351,7 +365,7 @@ function EldervaleScoring() {
 
         <div className="grid grid-cols-12 gap-4 mx-auto col-span-12 ">
           <div className="grid grid-cols-subgrid gap-4 col-span-12 ">
-            <div className="col-start-1 col-span-6 md:col-span-3  ">
+            <div className="col-span-6 md:col-span-3  ">
               <label className="block text-sm font-medium leading-6 ">
                 <p>Starter Card Score: {StarterElementalScore}</p>
                 <p>Prophecy Score: {ProphecyScore}</p>
@@ -360,7 +374,7 @@ function EldervaleScoring() {
                 <p>Elemental Score: {ElementalScore}</p>
               </label>
             </div>
-            <div className="col-start-1 col-span-6 md:col-span-3  ">
+            <div className="col-span-6 md:col-span-3  ">
               <label className="block text-sm font-medium leading-6 ">
                 <p>Adventure Card Scores</p>
                 <p className="ml-3">Air: {Adventures.Air}</p>
@@ -373,7 +387,7 @@ function EldervaleScoring() {
                 <p className="ml-3">Chaos:{ Adventures.Chaos}</p>
               </label>
             </div>
-            <div className="col-start-1 col-span-6 md:col-span-3  ">
+            <div className=" col-span-6 md:col-span-3  ">
               <label className="block text-sm font-medium leading-6 ">
                 <p>Dwelling Scores</p>
                 <p className="ml-3">Air Dwelling: {Dwellings.Air}</p>
