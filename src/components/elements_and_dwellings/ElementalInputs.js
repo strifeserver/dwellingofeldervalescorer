@@ -27,6 +27,7 @@ function ElementalInputs({
       ...prevDwellings,
       [ElementName]: event.target.value,
     }));
+    setDwellingScore(event.target.value)
 
     let TotalElementCompute =
       parseInt(ElementalScore) + parseInt(DwellingScore);
@@ -38,7 +39,7 @@ function ElementalInputs({
   };
 
   useEffect(() => {
-    setTotalElementalScore(parseInt(ElementalScore) + parseInt(DwellingScore));
+    setTotalElementalScore(parseInt(ElementalScore) * parseInt(DwellingScore));
     setElementScore(parseInt(TotalElementalScore));
     setSelectedElementScore(ElementalScore);
   }, [TotalElementalScore, CurrentElementScore, DwellingScore, ElementalScore]);

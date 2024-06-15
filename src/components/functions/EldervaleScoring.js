@@ -4,9 +4,9 @@ import AdventureCards from "../elements_and_dwellings/AdventureCards";
 import React, { useState, useEffect } from "react";
 
 function EldervaleScoring() {
-  const [TotalScore, setTotalScore] = useState(0);
   const [ElementalScore, setElementalScore] = useState(0);
   const [UnspentOrbs, setUnspentOrbs] = useState(0);
+  const [TotalScore, setTotalScore] = useState(0);
   const [VictoryPoints, setVictoryPoints] = useState(0);
   const [StarterElementalScore, setStarterElementalScore] = useState(0);
   const [ProphecyScore, setProphecyScore] = useState(0);
@@ -30,6 +30,17 @@ function EldervaleScoring() {
   const [ChaosElement, setChaosElement] = useState(0);
   const [ChaosElementalScore, setChaosElementalScore] = useState(0);
 
+  const [Elements, setElements] = useState({
+    Air: 0,
+    Earth: 0,
+    Fire: 0,
+    Water: 0,
+    Light: 0,
+    Darkness: 0,
+    Order: 0,
+    Chaos: 0,
+  });
+
   const [Adventures, setAdventures] = useState({
     Air: 0,
     Earth: 0,
@@ -52,15 +63,57 @@ function EldervaleScoring() {
   });
 
   const getScore = () => {
-    console.log("ElementalScore", ElementalScore);
-    console.log("UnspentOrbs", UnspentOrbs);
-    console.log("StarterElementalScore", StarterElementalScore);
-    console.log("ProphecyScore", ProphecyScore);
-    console.log("VaultScore", VaultScore);
-    console.log("MagicScore", MagicScore);
+    
+    setTotalScore(0);
+    let adventureCardTotalScore = 0;
+    let computeScores = 0;
+
+    let Elements = {
+      Air: AirElement,
+      Earth: EarthElement,
+      Fire: FireElement,
+      Water: WaterElement,
+      Light: LightElement,
+      Darkness: DarknessElement,
+      Order: OrderElement,
+      Chaos: ChaosElement,
+    };
+    let highestValue = Math.max(...Object.values(Elements));
+    console.log("compute");
+
+    Object.keys(Elements).forEach((key) => {
+      let computeAdvScore = highestValue * Elements[key];
+      adventureCardTotalScore = adventureCardTotalScore + computeAdvScore;
+      // console.log(`Key: ${key}, Value: ${Elements[key]}`);
+    });
+
+    // console.log("Highest Element Value: ", highestValue);
+    // console.log("Adventures: ", Adventures);
+
+
+    computeScores =
+      parseInt(ElementalScore) +
+      parseInt(UnspentOrbs) +
+      parseInt(StarterElementalScore) +
+      parseInt(ProphecyScore) +
+      parseInt(VaultScore) +
+      parseInt(MagicScore) +
+      parseInt(adventureCardTotalScore) +
+      parseInt(VictoryPoints);
+
+    // console.log("ElementalScore", ElementalScore);
+    // console.log("UnspentOrbs", UnspentOrbs);
+    // console.log("StarterElementalScore", StarterElementalScore);
+    // console.log("ProphecyScore", ProphecyScore);
+    // console.log("VaultScore", VaultScore);
+    // console.log("MagicScore", MagicScore);
+    // console.log("Adventure Card Score", Adventures);
+
+    console.log("----");
+    console.log(VictoryPoints);
+    setTotalScore(computeScores);
   };
   const resetScore = () => {
-    setTotalScore(0);
     setElementalScore(0);
     setUnspentOrbs(0);
     setStarterElementalScore(0);
@@ -139,7 +192,6 @@ function EldervaleScoring() {
         OrderElementalScore +
         ChaosElementalScore
     );
-
   }, [
     AirElementalScore,
     EarthElementalScore,
@@ -153,6 +205,7 @@ function EldervaleScoring() {
     StarterElementalScore,
     Adventures,
     Dwellings,
+    Elements,
   ]);
   return (
     <>
@@ -193,7 +246,6 @@ function EldervaleScoring() {
                 value=""
                 label="Victory Points"
                 onChange={setVictoryPoints} // Pass the handler as a prop
-
               ></InputForm>
             </div>
 
@@ -350,7 +402,7 @@ function EldervaleScoring() {
 
         <AdventureCards
           CurrentElementalScores={{
-            Air: AirElementalScore,
+            Air: AirElement,
             Earth: EarthElementalScore,
             Fire: FireElementalScore,
             Water: WaterElementalScore,
@@ -384,7 +436,7 @@ function EldervaleScoring() {
                 <p className="ml-3">Light: {Adventures.Light}</p>
                 <p className="ml-3">Darkness: {Adventures.Darkness}</p>
                 <p className="ml-3">Order: {Adventures.Order}</p>
-                <p className="ml-3">Chaos:{ Adventures.Chaos}</p>
+                <p className="ml-3">Chaos:{Adventures.Chaos}</p>
               </label>
             </div>
             <div className=" col-span-6 md:col-span-3  ">
