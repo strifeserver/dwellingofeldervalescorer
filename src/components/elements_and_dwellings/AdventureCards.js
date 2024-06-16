@@ -29,9 +29,15 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings }) {
 
   const handleInputChange = (element, value) => {
     let computeElement = parseInt(CurrentElementalScores[element]) * value;
-    let limitCount = parseInt(Dwellings[element]) * parseInt(3);
+    let ExistingDwellings = Math.max(...Object.values(Dwellings));
 
+
+    let limitCount = parseInt(ExistingDwellings) * parseInt(3);
     // console.log(limitCount)
+    // Check if any dwellings exist
+    // if(ExistingDwellings != 0){
+
+    // }
     if(value > limitCount){
       alert('Above Limit');
       return false;

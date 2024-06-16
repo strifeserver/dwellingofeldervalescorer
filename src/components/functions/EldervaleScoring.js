@@ -79,16 +79,11 @@ function EldervaleScoring() {
       Chaos: ChaosElement,
     };
     let highestValue = Math.max(...Object.values(Elements));
-    console.log("compute");
 
     Object.keys(Elements).forEach((key) => {
       let computeAdvScore = highestValue * Elements[key];
       adventureCardTotalScore = adventureCardTotalScore + computeAdvScore;
-      // console.log(`Key: ${key}, Value: ${Elements[key]}`);
     });
-
-    // console.log("Highest Element Value: ", highestValue);
-    // console.log("Adventures: ", Adventures);
 
 
     computeScores =
@@ -101,16 +96,6 @@ function EldervaleScoring() {
       parseInt(adventureCardTotalScore) +
       parseInt(VictoryPoints);
 
-    // console.log("ElementalScore", ElementalScore);
-    // console.log("UnspentOrbs", UnspentOrbs);
-    // console.log("StarterElementalScore", StarterElementalScore);
-    // console.log("ProphecyScore", ProphecyScore);
-    // console.log("VaultScore", VaultScore);
-    // console.log("MagicScore", MagicScore);
-    // console.log("Adventure Card Score", Adventures);
-
-    console.log("----");
-    console.log(VictoryPoints);
     setTotalScore(computeScores);
   };
   const resetScore = () => {
