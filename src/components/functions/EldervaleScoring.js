@@ -31,14 +31,54 @@ function EldervaleScoring() {
   const [ChaosElementalScore, setChaosElementalScore] = useState(0);
 
   const [Elements, setElements] = useState({
-    Air: 0,
-    Earth: 0,
-    Fire: 0,
-    Water: 0,
-    Light: 0,
-    Darkness: 0,
-    Order: 0,
-    Chaos: 0,
+    Air: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Earth: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Fire: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Water: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Light: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Darkness: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Order: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
+    Chaos: {
+      score: 0,
+      input: 0,
+      dwellings: 0,
+      adventure: 0,
+    },
   });
 
   const [Adventures, setAdventures] = useState({
@@ -68,7 +108,18 @@ function EldervaleScoring() {
     let adventureCardTotalScore = 0;
     let computeScores = 0;
 
-    let Elements = {
+
+
+
+    // Object.keys(Elements).forEach((key) => {
+    //   let score = Elements[key]['score'];
+    //   let dwellings = Elements[key]['dwellings'];
+    //   let adventure = Elements[key]['adventure'];
+    //   console.log(Elements[key]);
+    // });
+    // return false;
+
+    let ElementsA = {
       Air: AirElement,
       Earth: EarthElement,
       Fire: FireElement,
@@ -78,13 +129,16 @@ function EldervaleScoring() {
       Order: OrderElement,
       Chaos: ChaosElement,
     };
-    let highestValue = Math.max(...Object.values(Elements));
+    let highestValue = Math.max(...Object.values(ElementsA));
 
-    Object.keys(Elements).forEach((key) => {
-      let computeAdvScore = highestValue * Elements[key];
+    console.log('Adventure Card')
+    Object.keys(ElementsA).forEach((key) => {
+      // let computeAdvScore = highestValue * ElementsA[key];
+      let computeAdvScore = highestValue * Adventures[key];
+    
       adventureCardTotalScore = adventureCardTotalScore + computeAdvScore;
     });
-
+    console.log(Adventures)
 
     computeScores =
       parseInt(ElementalScore) +
@@ -95,7 +149,15 @@ function EldervaleScoring() {
       parseInt(MagicScore) +
       parseInt(adventureCardTotalScore) +
       parseInt(VictoryPoints);
-
+      console.log('Compute Scores')
+    console.log('ElementalScore',ElementalScore);
+    console.log('UnspentOrbs',UnspentOrbs);
+    console.log('StarterElementalScore',StarterElementalScore);
+    console.log('ProphecyScore',ProphecyScore);
+    console.log('VaultScore',VaultScore);
+    console.log('MagicScore',MagicScore);
+    console.log('adventureCardTotalScore',adventureCardTotalScore);
+    console.log('VictoryPoints',VictoryPoints);
     setTotalScore(computeScores);
   };
   const resetScore = () => {
@@ -163,20 +225,31 @@ function EldervaleScoring() {
       console.log(selectedElement);
       console.log(elementMap[selectedElement]);
       setStarterElementalScore(compute);
+
+      setElements((prevElements) => ({
+        ...prevElements,
+        [selectedElement]: {
+          ...prevElements[selectedElement],
+          starter: compute,
+        },
+      }));
+
+
     }
   };
 
   useEffect(() => {
-    setElementalScore(
-      AirElementalScore +
-        EarthElementalScore +
-        FireElementalScore +
-        WaterElementalScore +
-        LightElementalScore +
-        DarknessElementalScore +
-        OrderElementalScore +
-        ChaosElementalScore
-    );
+    console.log('Air Element')
+    console.log(Elements)
+    console.log('----')
+
+
+    let ElementalScore = 0;
+    Object.keys(Elements).forEach((key) => {
+      ElementalScore = ElementalScore + Elements[key]['score']; 
+      setElementalScore(ElementalScore);
+    });
+
   }, [
     AirElementalScore,
     EarthElementalScore,
@@ -248,6 +321,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setAirElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Earth"
@@ -257,6 +332,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setEarthElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Fire"
@@ -266,6 +343,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setFireElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Water"
@@ -275,6 +354,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setWaterElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Light"
@@ -284,6 +365,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setLightElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Darkness"
@@ -293,6 +376,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setDarknessElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Order"
@@ -302,6 +387,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setOrderElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
             <ElementalInputs
               ElementName="Chaos"
@@ -311,6 +398,8 @@ function EldervaleScoring() {
               setSelectedElementScore={setChaosElement}
               setDwellings={setDwellings}
               Dwellings={Dwellings}
+              Elements={Elements}
+              setElements={setElements}
             ></ElementalInputs>
           </div>
         </div>
@@ -398,6 +487,8 @@ function EldervaleScoring() {
           }}
           setAdventures={setAdventures}
           Dwellings={Dwellings}
+          Elements={Elements}
+          setElements={setElements}
         />
 
         <div className="grid grid-cols-12 gap-4 mx-auto col-span-12 ">
@@ -414,27 +505,28 @@ function EldervaleScoring() {
             <div className="col-span-6 md:col-span-3  ">
               <label className="block text-sm font-medium leading-6 ">
                 <p>Adventure Card Scores</p>
-                <p className="ml-3">Air: {Adventures.Air}</p>
-                <p className="ml-3">Earth: {Adventures.Earth}</p>
-                <p className="ml-3">Fire: {Adventures.Fire}</p>
-                <p className="ml-3">Water: {Adventures.Water}</p>
-                <p className="ml-3">Light: {Adventures.Light}</p>
-                <p className="ml-3">Darkness: {Adventures.Darkness}</p>
-                <p className="ml-3">Order: {Adventures.Order}</p>
-                <p className="ml-3">Chaos:{Adventures.Chaos}</p>
+                
+                <p className="ml-3">Air: {Elements['Air']['adventure']}</p>
+                <p className="ml-3">Earth: {Elements['Earth']['adventure']}</p>
+                <p className="ml-3">Fire: {Elements['Fire']['adventure']}</p>
+                <p className="ml-3">Water: {Elements['Water']['adventure']}</p>
+                <p className="ml-3">Light: {Elements['Light']['adventure']}</p>
+                <p className="ml-3">Darkness: {Elements['Darkness']['adventure']}</p>
+                <p className="ml-3">Order: {Elements['Order']['adventure']}</p>
+                <p className="ml-3">Chaos: {Elements['Chaos']['adventure']}</p>
               </label>
             </div>
             <div className=" col-span-6 md:col-span-3  ">
               <label className="block text-sm font-medium leading-6 ">
                 <p>Dwelling Scores</p>
-                <p className="ml-3">Air Dwelling: {Dwellings.Air}</p>
-                <p className="ml-3">Earth Dwelling: {Dwellings.Earth}</p>
-                <p className="ml-3">Fire Dwelling: {Dwellings.Fire}</p>
-                <p className="ml-3">Water Dwelling: {Dwellings.Water}</p>
-                <p className="ml-3">Light Dwelling: {Dwellings.Light}</p>
-                <p className="ml-3">Darkness Dwelling: {Dwellings.Darkness}</p>
-                <p className="ml-3">Order Dwelling: {Dwellings.Order}</p>
-                <p className="ml-3">Chaos Dwelling: {Dwellings.Chaos}</p>
+                <p className="ml-3">Air Dwelling: {Elements['Air']['dwellings']}</p>
+                <p className="ml-3">Earth Dwelling: {Elements['Earth']['dwellings']}</p>
+                <p className="ml-3">Fire Dwelling: {Elements['Fire']['dwellings']}</p>
+                <p className="ml-3">Water Dwelling: {Elements['Water']['dwellings']}</p>
+                <p className="ml-3">Light Dwelling: {Elements['Light']['dwellings']}</p>
+                <p className="ml-3">Darkness Dwelling: {Elements['Darkness']['dwellings']}</p>
+                <p className="ml-3">Order Dwelling: {Elements['Order']['dwellings']}</p>
+                <p className="ml-3">Chaos Dwelling: {Elements['Chaos']['dwellings']}</p>
               </label>
             </div>
 

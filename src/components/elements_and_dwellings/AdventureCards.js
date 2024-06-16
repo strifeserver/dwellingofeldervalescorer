@@ -1,7 +1,7 @@
 import InputForm from "../inputs/InputForm";
 import React, { useState, useEffect } from "react";
 
-function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings }) {
+function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings , Elements , setElements }) {
   const elements = [
     "Air",
     "Earth",
@@ -13,59 +13,55 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings }) {
     "Chaos",
   ];
 
-
   const [InputLimit, setInputLimit] = useState({
-    Air: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Earth: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Fire: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Water: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Light: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Darkness: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Order: 'SCORE: 0 / ' + 'LIMIT: 0',
-    Chaos: 'SCORE: 0 / ' + 'LIMIT: 0',
+    Air: "SCORE: 0 / " + "LIMIT: 0",
+    Earth: "SCORE: 0 / " + "LIMIT: 0",
+    Fire: "SCORE: 0 / " + "LIMIT: 0",
+    Water: "SCORE: 0 / " + "LIMIT: 0",
+    Light: "SCORE: 0 / " + "LIMIT: 0",
+    Darkness: "SCORE: 0 / " + "LIMIT: 0",
+    Order: "SCORE: 0 / " + "LIMIT: 0",
+    Chaos: "SCORE: 0 / " + "LIMIT: 0",
   });
-
-
 
   const handleInputChange = (element, value) => {
     let computeElement = parseInt(CurrentElementalScores[element]) * value;
     let ExistingDwellings = Math.max(...Object.values(Dwellings));
 
-
     let limitCount = parseInt(ExistingDwellings) * parseInt(3);
-    // console.log(limitCount)
-    // Check if any dwellings exist
-    // if(ExistingDwellings != 0){
 
-    // }
-    if(value > limitCount){
-      alert('Above Limit');
+    if (value > limitCount) {
+      alert("Above Limit");
       return false;
     }
+
+    
     setInputLimit((prevLimits) => ({
       ...prevLimits,
-      [element]: 'SCORE ' + computeElement + ' / ' + 'LIMIT ' + limitCount,
+      [element]: "SCORE " + computeElement + " / " + "LIMIT " + limitCount,
     }));
-
-
-
 
     if (Dwellings[element] >= 1) {
       setAdventures((prevAdventures) => ({
         ...prevAdventures,
         [element]: value,
       }));
+
+      setElements((prevElements) => ({
+        ...prevElements,
+        [element]: {
+          ...prevElements[element],
+          adventure: value,
+        },
+      }));
+
+
+
+
     }
-
-
   };
 
-  useEffect(() => {
-
-
-  }, [
-    InputLimit
-  ]);
+  useEffect(() => {}, [InputLimit]);
 
   return (
     <div className="grid grid-cols-12 gap-4 mx-auto col-span-12">
@@ -90,8 +86,7 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings }) {
             // onChange={handleInputChange}
           />
 
-          
-      {/* <input
+          {/* <input
         className={`rounded-md border-0 py-1.5 pl-7 pr-1 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 inputfield`}
         value={InputLimit[element]}
         readOnly
