@@ -1,7 +1,10 @@
 import InputForm from "../inputs/InputForm";
 import React, { useState, useEffect } from "react";
 
-function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings , Elements , setElements }) {
+function AdventureCards({
+  Elements,
+  setElements
+}) {
   const elements = [
     "Air",
     "Earth",
@@ -10,7 +13,7 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings , Ele
     "Light",
     "Darkness",
     "Order",
-    "Chaos",
+    "Chaos"
   ];
 
   const [InputLimit, setInputLimit] = useState({
@@ -21,13 +24,18 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings , Ele
     Light: "SCORE: 0 / " + "LIMIT: 0",
     Darkness: "SCORE: 0 / " + "LIMIT: 0",
     Order: "SCORE: 0 / " + "LIMIT: 0",
-    Chaos: "SCORE: 0 / " + "LIMIT: 0",
+    Chaos: "SCORE: 0 / " + "LIMIT: 0"
   });
 
   const handleInputChange = (element, value) => {
-    let computeElement = parseInt(CurrentElementalScores[element]) * value;
-    let ExistingDwellings = Math.max(...Object.values(Dwellings));
+    // let computeElement = parseInt(CurrentElementalScores[element]) * value;
+    let dwellings = [];
 
+    Object.keys(Elements).forEach((key) => {
+      dwellings.push(parseInt(Elements[key]["dwellings"]));
+    });
+
+    let ExistingDwellings = Math.max(...dwellings);
     let limitCount = parseInt(ExistingDwellings) * parseInt(3);
 
     if (value > limitCount) {
@@ -35,29 +43,20 @@ function AdventureCards({ CurrentElementalScores, setAdventures, Dwellings , Ele
       return false;
     }
 
-    
-    setInputLimit((prevLimits) => ({
-      ...prevLimits,
-      [element]: "SCORE " + computeElement + " / " + "LIMIT " + limitCount,
-    }));
+    // setInputLimit((prevLimits) => ({
+    //   ...prevLimits,
+    //   [element]: "SCORE " + computeElement + " / " + "LIMIT " + limitCount
+    // }));
 
-    if (Dwellings[element] >= 1) {
-      setAdventures((prevAdventures) => ({
-        ...prevAdventures,
-        [element]: value,
-      }));
+    if (Elements[element]['dwellings'] >= 1) {
 
       setElements((prevElements) => ({
         ...prevElements,
         [element]: {
           ...prevElements[element],
           adventure: value,
-        },
+        }
       }));
-
-
-
-
     }
   };
 

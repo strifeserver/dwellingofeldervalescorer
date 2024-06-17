@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-function ElementalInputs({
-  ElementName,
-  CurrentTotalElementScore,
-  CurrentElementScore,
-  setElementScore,
-  setSelectedElementScore,
-  setDwellings,
-  Dwellings,
-  Elements,
-  setElements,
-}) {
+function ElementalInputs({ ElementName, Elements, setElements }) {
   const [TotalElementalScore, setTotalElementalScore] = useState(0);
   const [ElementalScore, setElementalScore] = useState(0);
   const [DwellingScore, setDwellingScore] = useState(0);
@@ -19,7 +9,7 @@ function ElementalInputs({
     // Validate if the value is a number and less than or equal to 5
     if (/^\d*$/.test(value) && Number(value) <= 5) {
       setElementalScore(value);
-      
+
       setElements((prevElements) => ({
         ...prevElements,
         [ElementName]: {
@@ -28,34 +18,18 @@ function ElementalInputs({
         },
       }));
     }
-
-
-
   };
 
   const elementDwellingChange = (event) => {
-    let dwellingCompute = ElementalScore * event.target.value;
-
-    setDwellings((prevDwellings) => ({
-      ...prevDwellings,
-      [ElementName]: event.target.value,
-    }));
-
+    let elementInput = Elements[ElementName]["input"];
     setElements((prevElements) => ({
       ...prevElements,
       [ElementName]: {
         ...prevElements[ElementName],
         dwellings: event.target.value,
+        score: event.target.value * elementInput,
       },
     }));
-
-
-    
-    setDwellingScore(event.target.value)
-
-    let TotalElementCompute =
-      parseInt(ElementalScore) + parseInt(DwellingScore);
-    setTotalElementalScore(TotalElementCompute);
   };
 
   const handleFocus = (event) => {
@@ -63,8 +37,6 @@ function ElementalInputs({
   };
 
   useEffect(() => {
-
-
     setElements((prevElements) => ({
       ...prevElements,
       [ElementName]: {
@@ -74,16 +46,14 @@ function ElementalInputs({
     }));
 
     setTotalElementalScore(parseInt(ElementalScore) * parseInt(DwellingScore));
-    setElementScore(parseInt(TotalElementalScore));
-    setSelectedElementScore(ElementalScore);
-  }, [TotalElementalScore, CurrentElementScore, DwellingScore, ElementalScore]);
+  }, [TotalElementalScore, DwellingScore, ElementalScore]);
   return (
     <>
       <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 ">
         <div className="grid grid-cols-12 gap-4 mx-auto text-center">
           <div className="col-span-12 ">
             <p>
-              {ElementName} {Elements[ElementName]['score']}
+              {ElementName} {Elements[ElementName]["score"]}
             </p>
           </div>
           <div className="col-span-6 ">
@@ -91,7 +61,7 @@ function ElementalInputs({
               htmlFor="element_name"
               className="block text-sm font-medium leading-6 "
             >
-              Element {Elements[ElementName]['input']}
+              Element {Elements[ElementName]["input"]}
             </label>
 
             <input
@@ -111,7 +81,7 @@ function ElementalInputs({
               htmlFor="element_name"
               className="block text-sm font-medium leading-6 "
             >
-              Dwelling {Elements[ElementName]['dwellings']}
+              Dwelling {Elements[ElementName]["dwellings"]}
             </label>
 
             <input
